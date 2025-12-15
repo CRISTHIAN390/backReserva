@@ -16,7 +16,12 @@ function verifyToken(token) {
   return jwt.verify(token, process.env.JWT_SECRET);
 }
 
+function generateToken(payload, expiresIn = "15m") {
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+}
+
 module.exports = {
   signToken,
   verifyToken,
+  generateToken ,
 };
