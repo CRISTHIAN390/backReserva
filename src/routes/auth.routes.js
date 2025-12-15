@@ -1,0 +1,17 @@
+//👉 Responsabilidad: Definir endpoints
+
+const express = require("express");
+const controller = require("../controllers/auth.controller");
+const authMiddleware = require("../middlewares/auth.middleware");
+
+
+const router = express.Router();
+
+// Público
+router.post("/register", controller.register);
+router.post("/login", controller.login);
+
+// Privado
+router.get("/me", authMiddleware, controller.me);
+
+module.exports = router;
